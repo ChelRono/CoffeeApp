@@ -166,6 +166,8 @@ fun MainContentInfo(){
 @Composable
 fun PagerTwo(){
     var text by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
         Column(
             modifier = Modifier
@@ -192,8 +194,9 @@ fun PagerTwo(){
                         fontWeight = FontWeight.Bold
                     )}
             )
+            Spacer(modifier = Modifier.height(10.dp))
             TextField(
-                value = text, onValueChange = { text = it },
+                value = email, onValueChange = { text = it },
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
@@ -204,14 +207,15 @@ fun PagerTwo(){
                         fontWeight = FontWeight.Bold
                     )}
             )
+            Spacer(modifier = Modifier.height(10.dp))
             TextField(
-                value = text, onValueChange = { text = it },
+                value = password, onValueChange = { text = it },
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
                 placeholder = {
                     Text(
-                        text = "Name",
+                        text = "Create Password",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )}
