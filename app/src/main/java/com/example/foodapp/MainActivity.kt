@@ -20,6 +20,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,6 +40,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -168,18 +170,52 @@ fun PagerTwo(){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black),
+                //.background(Color(0xFFffa500)),
 
         ) {
             Text(
                 text = "Sign Up",
-                color=Color(0xFFffa500),
+                color=Color.Black,
                 fontSize = 23.sp,
                 modifier = Modifier
                     .padding(vertical = 140.dp, horizontal = 24.dp)
             )
             TextField(
                 value = text, onValueChange = { text = it },
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .fillMaxWidth(),
+                placeholder = {
+                    Text(
+                        text = "Name",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )}
             )
+            TextField(
+                value = text, onValueChange = { text = it },
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .fillMaxWidth(),
+                placeholder = {
+                    Text(
+                        text = "Email",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )}
+            )
+            TextField(
+                value = text, onValueChange = { text = it },
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .fillMaxWidth(),
+                placeholder = {
+                    Text(
+                        text = "Name",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )}
+            )
+
         }
     }
