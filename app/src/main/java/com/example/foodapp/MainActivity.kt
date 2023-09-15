@@ -171,8 +171,9 @@ fun PagerTwo(){
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize(),
                 //.background(Color(0xFFffa500)),
+            verticalArrangement = Arrangement.Center
 
         ) {
             Text(
@@ -180,13 +181,18 @@ fun PagerTwo(){
                 color=Color.Black,
                 fontSize = 23.sp,
                 modifier = Modifier
-                    .padding(vertical = 140.dp, horizontal = 24.dp)
-            )
+                    .padding( horizontal = 24.dp)
+            )}
+       Column(
+           verticalArrangement = Arrangement.Center
+       ) {
             TextField(
                 value = text, onValueChange = { text = it },
                 modifier = Modifier
+                    .padding(top = 190.dp)
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
+
                 placeholder = {
                     Text(
                         text = "Name",
