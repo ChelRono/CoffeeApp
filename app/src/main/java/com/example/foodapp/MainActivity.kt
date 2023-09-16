@@ -3,11 +3,14 @@ package com.example.foodapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,24 +23,24 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.rounded.Search
+
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -52,9 +55,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.foodapp.ui.theme.FoodAppTheme
@@ -70,6 +70,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     MainContent()
                 }
             }
@@ -81,9 +82,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainContent() {
 
-    val pagerState = rememberPagerState()
-    HorizontalPager(state = pagerState,pageCount = 3, pageSize = PageSize.Fill) { page ->
-        when(page) {
+    val state = rememberPagerState()
+    HorizontalPager(pageCount = 3,
+    state = state,
+        modifier = Modifier
+    ) { page ->
+        when(page){
 
             0 -> {
 
@@ -106,9 +110,12 @@ fun MainContent() {
             1 -> {
                 PagerTwo()
             }
+            2 -> {
+                OrderPage()
+            }
+
         }}
 }
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainContentInfo(){
    Column(
@@ -160,7 +167,8 @@ fun MainContentInfo(){
    }
 
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PagerTwo(){
     var text by remember { mutableStateOf("") }
@@ -281,64 +289,59 @@ fun BottomText(){
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun OrderPage(){
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+            .background(Color.Black)
+            .fillMaxWidth()
+            .height(450.dp)
+
     ) {
-        Text(
-            text = "Home Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
+        OutlinedTextField(
+            value = "Search for coffee",
+            onValueChange = {},
+            modifier = Modifier
+                .border(width = 2.dp, color = Color.Black)
+                .padding(horizontal = 24.dp, vertical = 38.dp)
+                .background(Color.Black),
+            shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                containerColor = Color.Black,
+                textColor = Color(0xFFffa500),
+                cursorColor = Color(0xFFffa500)
+                ),
+            trailingIcon = { Icon(Icons.Filled.Search, contentDescription = "",) }
         )
+
+        IntroText()
     }
+
 }
 
 @Composable
-fun CartScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
-    ) {
+fun IntroText(){
+    Column (
+        modifier=Modifier
+            .padding(horizontal = 24.dp)
+    ){
         Text(
-            text = "My Network Screen",
-            fontWeight = FontWeight.Bold,
+            text = "Good Morning",
+            fontSize = 34.sp,
             color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
+            fontWeight = FontWeight.Bold
+
+            )
+
+        Text(
+            text = "Grab your first coffee this morning",
+            fontSize = 14.sp,
+            color = Color.White
+
+
         )
     }
 }
-
-@Composable
-fun SettingsScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
-    ) {
-        Text(
-            text = "Add Post Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
-    }
-}
-
-
-
 
 
