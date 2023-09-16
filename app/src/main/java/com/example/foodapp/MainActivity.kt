@@ -25,6 +25,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -41,6 +42,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -173,7 +175,7 @@ fun PagerTwo(){
             modifier = Modifier
                 .fillMaxSize(),
                 //.background(Color(0xFFffa500)),
-            verticalArrangement = Arrangement.Center
+
 
         ) {
             Text(
@@ -181,10 +183,12 @@ fun PagerTwo(){
                 color=Color.Black,
                 fontSize = 23.sp,
                 modifier = Modifier
-                    .padding( horizontal = 24.dp)
-            )}
+                    .padding( horizontal = 24.dp, vertical = 140.dp)
+            )
+        }
        Column(
-           verticalArrangement = Arrangement.Center
+           modifier = Modifier
+               .fillMaxSize(),
        ) {
             TextField(
                 value = text, onValueChange = { text = it },
@@ -192,6 +196,7 @@ fun PagerTwo(){
                     .padding(top = 190.dp)
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
+                singleLine = true,
 
                 placeholder = {
                     Text(
@@ -226,6 +231,22 @@ fun PagerTwo(){
                         fontWeight = FontWeight.Bold
                     )}
             )
+           Spacer(modifier = Modifier.height(40.dp))
+
+           Button(
+               onClick = {  },
+               shape=RoundedCornerShape(10.dp),
+               modifier= Modifier
+                   .fillMaxWidth()
+                   .padding(horizontal = 24.dp),
+               colors = ButtonDefaults.buttonColors(Color.Black)
+
+
+               ) {
+               Text(
+                   text = "Sign Up",
+                   )
+           }
 
         }
     }
