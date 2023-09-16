@@ -173,6 +173,7 @@ fun PagerTwo(){
 
         Column(
             modifier = Modifier
+                .background(Color.Black)
                 .fillMaxSize(),
                 //.background(Color(0xFFffa500)),
 
@@ -180,10 +181,10 @@ fun PagerTwo(){
         ) {
             Text(
                 text = "Sign Up",
-                color=Color.Black,
+                color=Color(0xFFffa500),
                 fontSize = 23.sp,
                 modifier = Modifier
-                    .padding( horizontal = 24.dp, vertical = 140.dp)
+                    .padding( horizontal = 24.dp, vertical = 110.dp)
             )
         }
        Column(
@@ -239,7 +240,7 @@ fun PagerTwo(){
                modifier= Modifier
                    .fillMaxWidth()
                    .padding(horizontal = 24.dp),
-               colors = ButtonDefaults.buttonColors(Color.Black)
+               colors = ButtonDefaults.buttonColors(Color(0xFFffa500))
 
 
                ) {
@@ -261,13 +262,25 @@ fun BottomText(){
     ) {
         Text(
             text = "By signing up you agree to our",
+            fontSize = 16.sp,
+            color = Color.White
             )
         Text(
             text = "Terms and privacy policy.",
+            fontSize = 16.sp,
+            color = Color.White
         )
-        Spacer(modifier = Modifier.height(10.dp))
-        Text(
-            text = "or",
-        )
+
+        Spacer(modifier = Modifier.height(130.dp))
+       Row {
+           Text(
+               text = "Already have an account?",
+               color = Color.White
+           )
+           Text(
+               text = "Login",
+               color=Color(0xFFffa500),
+           )
+       }
     }
 }
