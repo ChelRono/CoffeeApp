@@ -247,6 +247,27 @@ fun PagerTwo(){
                    text = "Sign Up",
                    )
            }
-
+           Spacer(modifier = Modifier.height(10.dp))
+           BottomText()
         }
     }
+@Composable
+fun BottomText(){
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier=Modifier
+            .padding(horizontal = 70.dp)
+    ) {
+        Text(
+            text = "By signing up you agree to our",
+            )
+        Text(
+            text = "Terms and privacy policy.",
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = "or",
+        )
+    }
+}
