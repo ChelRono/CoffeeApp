@@ -49,6 +49,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -299,21 +300,38 @@ fun OrderPage(){
             .height(450.dp)
 
     ) {
-        OutlinedTextField(
-            value = "Search for coffee",
-            onValueChange = {},
+        Row (
+            horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
-                .border(width = 2.dp, color = Color.Black)
-                .padding(horizontal = 24.dp, vertical = 38.dp)
-                .background(Color.Black),
-            shape = RoundedCornerShape(30.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                containerColor = Color.Black,
-                textColor = Color(0xFFffa500),
-                cursorColor = Color(0xFFffa500)
+
+        ){
+            OutlinedTextField(
+                value = "Search for coffee",
+                onValueChange = {},
+                modifier = Modifier
+
+                    .padding(horizontal = 24.dp, vertical = 38.dp)
+                    .background(Color.Black),
+                shape= RoundedCornerShape(60.dp),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    containerColor = Color.Black,
+                    textColor = Color(0xFFffa500),
+                    cursorColor = Color(0xFFffa500)
                 ),
-            trailingIcon = { Icon(Icons.Filled.Search, contentDescription = "",) }
-        )
+                trailingIcon = { Icon(Icons.Filled.Search, contentDescription = "",) }
+            )
+            Image(
+                painter = painterResource(R.drawable.img_1),
+                contentDescription = "avatar",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .padding(vertical = 38.dp, )
+                    .size(54.dp)
+                    .clip(CircleShape)
+                    .border(2.dp, Color.Gray, CircleShape),
+            )
+        }
+
 
         IntroText()
     }
@@ -343,5 +361,7 @@ fun IntroText(){
         )
     }
 }
+
+
 
 
