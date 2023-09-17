@@ -9,10 +9,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,6 +22,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
@@ -325,17 +330,19 @@ fun OrderPage(){
                 contentDescription = "avatar",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .padding(vertical = 38.dp, )
+                    .padding(vertical = 38.dp,)
                     .size(54.dp)
                     .clip(CircleShape)
                     .border(2.dp, Color.Gray, CircleShape),
             )
         }
 
-
         IntroText()
-    }
 
+        Spacer(modifier = Modifier.height(30.dp))
+
+        FilterOptions()
+    }
 }
 
 @Composable
@@ -362,6 +369,84 @@ fun IntroText(){
     }
 }
 
+@Composable
+fun FilterOptions(){
+    val list: List<String> = listOf(
+        "Espresso",
+        "Cappuccino",
+        "Latte",
+        "Espresso",
+        "Cappuccino",
+        "Latte",
+        "Espresso",
+        "Cappuccino",
+        "Latte",
 
 
+    )
+    Row (
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxHeight()
+            .padding(horizontal = 24.dp),
+    ){
+        Button(
+            onClick = {},
+            shape=RoundedCornerShape(9.dp),
+            colors = ButtonDefaults.buttonColors(Color.DarkGray),
+            modifier = Modifier.size(width = 130.dp, height = 40.dp)
+
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.filter_list) ,
+                contentDescription =""
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text ="Filter",
+
+
+                )
+
+        }
+        Spacer(modifier = Modifier.width(24.dp))
+        LazyHorizontalGrid(
+
+
+            rows = GridCells.Fixed(1),
+            verticalArrangement = Arrangement.spacedBy(space = 28.dp),
+            horizontalArrangement = Arrangement.spacedBy(space = 26.dp),
+        ){
+            items(list.size) {
+
+
+                    Spacer(modifier = Modifier.width(26.dp))
+                    
+                    FilterOptionsButton(title = list[it])
+
+
+            }
+        }
+    }
+
+}
+
+@Composable
+fun FilterOptionsButton(title :String){
+    Button(
+        onClick = {},
+        shape=RoundedCornerShape(9.dp),
+        colors = ButtonDefaults.buttonColors(Color.DarkGray),
+        modifier = Modifier.size(width = 110.dp, height = 40.dp)
+
+
+
+    ) {
+        Text(
+            text =title,
+
+
+            )
+    }
+}
 
