@@ -37,6 +37,8 @@ import androidx.compose.material.icons.rounded.Search
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -56,13 +58,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.example.foodapp.ui.theme.FoodAppTheme
 import kotlinx.coroutines.launch
 
@@ -335,6 +342,7 @@ fun OrderPage(){
                     .clip(CircleShape)
                     .border(2.dp, Color.Gray, CircleShape),
             )
+
         }
 
         IntroText()
@@ -342,7 +350,12 @@ fun OrderPage(){
         Spacer(modifier = Modifier.height(30.dp))
 
         FilterOptions()
+
+        Spacer(modifier = Modifier.height(100.dp))
+
+        MenuLayout()
     }
+
 }
 
 @Composable
@@ -356,15 +369,11 @@ fun IntroText(){
             fontSize = 34.sp,
             color = Color.White,
             fontWeight = FontWeight.Bold
-
             )
-
         Text(
             text = "Grab your first coffee this morning",
             fontSize = 14.sp,
             color = Color.White
-
-
         )
     }
 }
@@ -381,8 +390,6 @@ fun FilterOptions(){
         "Espresso",
         "Cappuccino",
         "Latte",
-
-
     )
     Row (
         modifier = Modifier
@@ -404,26 +411,20 @@ fun FilterOptions(){
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text ="Filter",
-
-
                 )
-
         }
         Spacer(modifier = Modifier.width(24.dp))
+
         LazyHorizontalGrid(
-
-
             rows = GridCells.Fixed(1),
             verticalArrangement = Arrangement.spacedBy(space = 28.dp),
             horizontalArrangement = Arrangement.spacedBy(space = 26.dp),
         ){
             items(list.size) {
 
-
                     Spacer(modifier = Modifier.width(26.dp))
                     
                     FilterOptionsButton(title = list[it])
-
 
             }
         }
@@ -437,16 +438,42 @@ fun FilterOptionsButton(title :String){
         onClick = {},
         shape=RoundedCornerShape(9.dp),
         colors = ButtonDefaults.buttonColors(Color.DarkGray),
-        modifier = Modifier.size(width = 110.dp, height = 40.dp)
-
-
+        modifier = Modifier
+            .size(width = 110.dp, height = 40.dp)
 
     ) {
         Text(
             text =title,
-
-
             )
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MenuLayout(){
+    Row(
+        verticalAlignment = Alignment.Bottom,
+        modifier=Modifier
+            .fillMaxSize()
+            .padding(horizontal = 24.dp, vertical = 30.dp)
+
+
+
+    ) {
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = Blue,
+            ),
+            modifier = Modifier
+                .size(width = 100.dp, height = 150.dp)
+
+        ) {
+            Text(
+                text = "Filled",
+                modifier = Modifier
+                    .padding(16.dp),
+                textAlign = TextAlign.Center,
+            )
+        }
+    }
+}
