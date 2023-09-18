@@ -215,7 +215,7 @@ fun PagerTwo(){
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
                 singleLine = true,
-
+                shape=RoundedCornerShape(10.dp),
                 placeholder = {
                     Text(
                         text = "Name",
@@ -229,6 +229,7 @@ fun PagerTwo(){
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
+                shape=RoundedCornerShape(10.dp),
                 placeholder = {
                     Text(
                         text = "Email",
@@ -242,6 +243,7 @@ fun PagerTwo(){
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
+                shape=RoundedCornerShape(10.dp),
                 placeholder = {
                     Text(
                         text = "Create Password",
@@ -309,7 +311,8 @@ fun OrderPage(){
         modifier = Modifier
             .background(Color.Black)
             .fillMaxWidth()
-            .height(450.dp)
+            .fillMaxSize()
+
 
     ) {
         Row (
@@ -448,32 +451,15 @@ fun FilterOptionsButton(title :String){
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MenuLayout(){
-    Row(
-        verticalAlignment = Alignment.Bottom,
-        modifier=Modifier
-            .fillMaxSize()
-            .padding(horizontal = 24.dp, vertical = 30.dp)
+     LazyVerticalGrid(
+         columns =  GridCells.Fixed(1),
+
+     ){
 
 
+     }
 
-    ) {
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = Blue,
-            ),
-            modifier = Modifier
-                .size(width = 100.dp, height = 150.dp)
-
-        ) {
-            Text(
-                text = "Filled",
-                modifier = Modifier
-                    .padding(16.dp),
-                textAlign = TextAlign.Center,
-            )
-        }
-    }
 }
+
