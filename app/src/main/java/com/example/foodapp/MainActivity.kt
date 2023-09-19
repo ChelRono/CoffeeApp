@@ -453,13 +453,43 @@ fun FilterOptionsButton(title :String){
 
 @Composable
 fun MenuLayout(){
-     LazyVerticalGrid(
-         columns =  GridCells.Fixed(1),
+    val capuccino = listOf(
+        "with milk",
+        "with chocolate"
+    )
+        LazyHorizontalGrid(
+            rows=  GridCells.Fixed(1),
 
-     ){
+            )
+        {
+
+            items(capuccino.size) {
 
 
-     }
+
+               CardLayout(title = capuccino[it])
+
+            }
+
+    }
+
 
 }
 
+@Composable
+fun CardLayout(title:String){
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        ),
+        modifier = Modifier
+            .size(width = 240.dp, height = 100.dp)
+    ) {
+        Text(
+            text = title,
+            modifier = Modifier
+                .padding(16.dp),
+            textAlign = TextAlign.Center,
+        )
+    }
+}
