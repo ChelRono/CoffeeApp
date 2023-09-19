@@ -311,7 +311,7 @@ fun OrderPage(){
         modifier = Modifier
             .background(Color.Black)
             .fillMaxWidth()
-            .fillMaxSize()
+
 
 
     ) {
@@ -455,10 +455,14 @@ fun FilterOptionsButton(title :String){
 fun MenuLayout(){
     val capuccino = listOf(
         "with milk",
-        "with chocolate"
+        "with chocolate",
+        "with milk",
+        "with chocolate",
+        "with milk",
+        "with chocolate",
     )
-        LazyHorizontalGrid(
-            rows=  GridCells.Fixed(1),
+        LazyVerticalGrid(
+            columns =  GridCells.Fixed(2),
 
             )
         {
@@ -483,7 +487,8 @@ fun CardLayout(title:String){
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
         modifier = Modifier
-            .size(width = 240.dp, height = 100.dp)
+            .size(width = 200.dp, height = 200.dp)
+            .padding(horizontal = 24.dp)
     ) {
         Text(
             text = title,
