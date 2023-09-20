@@ -26,6 +26,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 
 import androidx.compose.material3.Button
@@ -470,7 +471,7 @@ fun MenuLayout(){
 fun CardLayout(title:String){
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor = Color.DarkGray,
         ),
         modifier = Modifier
             .size(width = 230.dp, height = 200.dp)
@@ -487,17 +488,36 @@ fun CardLayout(title:String){
                 
                 )
             Text(
-                text = title,
-                modifier = Modifier
-                    .padding(16.dp),
-                textAlign = TextAlign.Center,
-            )
-            Text(
                 text = "Cappuccino",
                 modifier = Modifier
-                    .padding(16.dp),
+                    .padding(horizontal = 24.dp),
                 textAlign = TextAlign.Center,
+                color = Color.White
             )
+            Text(
+                text = title,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp),
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                fontSize = 14.sp
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(1.dp)
+            ) {
+                Text(
+                    text = "$4.20",
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp),
+                    textAlign = TextAlign.Center,
+                    color = Color(0xFFffa500)
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.add),
+                    contentDescription = ""
+                )
+            }
+
         }
 
     }
