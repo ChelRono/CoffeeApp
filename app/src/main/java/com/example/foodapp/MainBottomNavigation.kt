@@ -132,7 +132,6 @@ fun DescriptionText(){
                 shape= RoundedCornerShape(10.dp),
                 modifier= Modifier
                     .width(110.dp),
-
                 colors = ButtonDefaults.buttonColors(Color.DarkGray)
 
 
@@ -155,15 +154,48 @@ fun DescriptionText(){
                     text = "L",
                 )
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Row {
-
-            }
-
-
         }
+        Spacer(modifier = Modifier.height(20.dp))
+
+        BottomButtons()
     }
 }
+
+@Composable
+fun BottomButtons(){
+    Row {
+        Button(
+            onClick = {  },
+            shape= RoundedCornerShape(10.dp),
+            modifier= Modifier
+                .width(110.dp),
+            colors = ButtonDefaults.buttonColors(Color.DarkGray)
+
+
+        ) {
+            Text(
+                text = "$4.20",
+            )
+        }
+        Spacer(modifier = Modifier.width(30.dp))
+        Button(
+            onClick = {  },
+            shape= RoundedCornerShape(10.dp),
+            modifier= Modifier
+
+                .padding(horizontal = 24.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFFffa500))
+
+
+        ) {
+            Text(
+                text = "Buy Now",
+            )
+        }
+    }
+
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
