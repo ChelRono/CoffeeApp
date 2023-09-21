@@ -95,6 +95,7 @@ fun MainContent() {
                 Column(
                     modifier = Modifier
                         .background(Color.Black)
+                        .fillMaxSize()
 
                 ) {
                     Image(
@@ -102,7 +103,7 @@ fun MainContent() {
                         contentDescription = "",
                         contentScale = ContentScale.FillWidth,
                         modifier = Modifier
-                            .height(550.dp)
+                            .height(570.dp)
                     )
                     MainContentInfo()
 
@@ -213,21 +214,7 @@ fun MainContentInfo(){
           modifier = Modifier
               .padding(start=180.dp)
       ){
-          Button(
-              onClick = {},
-              shape=RoundedCornerShape(17.dp),
-              colors = ButtonDefaults.buttonColors(Color(0xFFffa500)),
-              modifier = Modifier
-                  .width(140.dp)
-                  .height(50.dp)
 
-
-          ) {
-              Text(
-                  text ="Get Started",
-
-                  )
-          }
       }
        }
 
