@@ -23,14 +23,7 @@ fun HomeScreen() {
             .background(colorResource(id = R.color.teal_700))
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = "Home Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        MainContent()
     }
 }
 
@@ -42,14 +35,7 @@ fun CartScreen() {
             .background(colorResource(id = R.color.teal_700))
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = "My Network Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        OrderPage()
     }
 }
 
@@ -61,14 +47,8 @@ fun SettingsScreen() {
             .background(colorResource(id = R.color.teal_700))
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = "Add Post Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+
+        PagerTwo()
     }
 }
 

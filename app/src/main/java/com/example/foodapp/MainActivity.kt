@@ -25,6 +25,8 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
@@ -51,11 +53,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.foodapp.ui.theme.FoodAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -70,6 +79,8 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     MainContent()
+
+                    MainScreenView()
                 }
             }
         }
@@ -80,14 +91,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainContent() {
 
-    val state = rememberPagerState()
-    HorizontalPager(pageCount = 3,
-    state = state,
-        modifier = Modifier
-    ) { page ->
-        when(page){
-
-            0 -> {
 
                 Column(
                     modifier = Modifier
@@ -105,15 +108,81 @@ fun MainContent() {
 
                 }
             }
-            1 -> {
-                PagerTwo()
-            }
-            2 -> {
-                OrderPage()
-            }
 
-        }}
+@Composable
+fun MainScreenView(){
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = { BottomNavigation(navController = navController) }
+    ) {paddingValues ->
+
+        NavigationGraph(navController = navController, modifier=Modifier.padding(paddingValues ) )
+    }
 }
+
+@Composable
+fun NavigationGraph(navController: NavHostController,modifier: Modifier=Modifier) {
+    NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
+        composable(BottomNavItem.Home.screen_route) {
+            HomeScreen()
+        }
+        composable(BottomNavItem.Cart.screen_route) {
+            CartScreen()
+        }
+        composable(BottomNavItem.Settings.screen_route) {
+          SettingsScreen()
+        }
+
+
+    }
+}
+
+@Composable
+fun BottomNavigation(navController: NavController) {
+    val items = listOf(
+        BottomNavItem.Home,
+        BottomNavItem.Cart,
+        BottomNavItem.Settings
+
+    )
+    androidx.compose.material.BottomNavigation(
+        backgroundColor = colorResource(id = R.color.black),
+        contentColor = Color.Black
+    ) {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+        items.forEach { item ->
+            BottomNavigationItem(
+                icon = { Icon(painterResource(id = item.icon), contentDescription = item.title, tint = Color.White) },
+
+                label = {
+                    Text(
+                        text = item.title,
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                },
+                selectedContentColor = Color.Black,
+                unselectedContentColor = Color.Black.copy(0.4f),
+                alwaysShowLabel = true,
+                selected = currentRoute == item.screen_route,
+                onClick = {
+                    navController.navigate(item.screen_route) {
+
+                        navController.graph.startDestinationRoute?.let { screen_route ->
+                            popUpTo(screen_route) {
+                                saveState = true
+                            }
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                }
+            )
+        }
+    }
+}
+
 @Composable
 fun MainContentInfo(){
    Column(
@@ -508,13 +577,16 @@ fun CardLayout(title:String){
                 Text(
                     text = "$4.20",
                     modifier = Modifier
+                        .clip(RoundedCornerShape(30.dp))
                         .padding(horizontal = 24.dp),
                     textAlign = TextAlign.Center,
                     color = Color(0xFFffa500)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.add),
-                    contentDescription = ""
+                    contentDescription = "",
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(30.dp))
                 )
             }
 
