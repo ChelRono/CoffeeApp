@@ -1,12 +1,16 @@
 package com.example.foodapp
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -21,8 +25,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,7 +49,7 @@ fun HomeScreen() {
 }
 
 @Composable
-fun CartScreen() {
+fun MenuScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,6 +60,110 @@ fun CartScreen() {
     }
 }
 
+@Composable
+fun CartScreen() {
+    Column(
+        modifier = Modifier
+            .background(Color.Black)
+            .fillMaxSize()
+
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.img_2),
+            contentDescription = "",
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .height(430.dp)
+                .padding(19.dp)
+                .clip(RoundedCornerShape(25.dp))
+        )
+        DescriptionText()
+    }
+}
+
+@Composable
+fun DescriptionText(){
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 24.dp, vertical = 1.dp)
+    ) {
+        Text(
+            text = "Description",
+            fontSize = 16.sp,
+            color = Color(0xFFffa500)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = "A cappuccino is a coffee-based drink made",
+            fontSize = 14.sp,
+            color = Color.White
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = "primarily from espresso and milk....",
+            fontSize = 14.sp,
+            color = Color.White
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "Size",
+            fontSize = 18.sp,
+            color = Color(0xFFffa500)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Row {
+            Button(
+                onClick = {  },
+                shape= RoundedCornerShape(10.dp),
+                modifier= Modifier
+                    .width(110.dp),
+
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)
+
+
+            ) {
+                Text(
+                    text = "S",
+                )
+            }
+            Spacer(modifier = Modifier.width(10.dp))
+            Button(
+                onClick = {  },
+                shape= RoundedCornerShape(10.dp),
+                modifier= Modifier
+                    .width(110.dp),
+
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)
+
+
+            ) {
+                Text(
+                    text = "M",
+                )
+            }
+            Spacer(modifier = Modifier.width(10.dp))
+            Button(
+                onClick = {  },
+                shape= RoundedCornerShape(10.dp),
+                modifier= Modifier
+                    .width(110.dp),
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)
+
+
+            ) {
+                Text(
+                    text = "L",
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row {
+
+            }
+
+
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

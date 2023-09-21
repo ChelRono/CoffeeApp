@@ -90,25 +90,23 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainContent() {
+    Column(
+        modifier = Modifier
+            .background(Color.Black)
+            .fillMaxSize()
 
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.img),
+            contentDescription = "",
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .height(570.dp)
+        )
+        MainContentInfo()
 
-                Column(
-                    modifier = Modifier
-                        .background(Color.Black)
-                        .fillMaxSize()
-
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        contentScale = ContentScale.FillWidth,
-                        modifier = Modifier
-                            .height(570.dp)
-                    )
-                    MainContentInfo()
-
-                }
-            }
+    }
+}
 
 @Composable
 fun MainScreenView(){
@@ -127,6 +125,9 @@ fun NavigationGraph(navController: NavHostController,modifier: Modifier=Modifier
         composable(BottomNavItem.Home.screen_route) {
             HomeScreen()
         }
+        composable(BottomNavItem.Menu.screen_route) {
+            MenuScreen()
+        }
         composable(BottomNavItem.Cart.screen_route) {
             CartScreen()
         }
@@ -142,6 +143,7 @@ fun NavigationGraph(navController: NavHostController,modifier: Modifier=Modifier
 fun BottomNavigation(navController: NavController) {
     val items = listOf(
         BottomNavItem.Home,
+        BottomNavItem.Menu,
         BottomNavItem.Cart,
         BottomNavItem.Settings
 
